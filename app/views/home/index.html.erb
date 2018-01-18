@@ -1,0 +1,28 @@
+<h1>CookBook</h1>
+<p><%= I18n.translate('site_description') %></p>
+
+<%= "Bem vindo: #{current_user.email}" if user_signed_in? %><br>
+<%= flash[:notice] %>
+<%= flash[:success] %>
+<% @recipes.each do |recipe| %>
+  <%= render recipe %>
+<% end %>
+
+<% content_for :aside do %>
+  <h1>Cozinhas</h1>
+  <ul>
+  <% @cuisines.each do |cuisine| %>
+    <li><%= link_to cuisine.name, cuisine %></li>
+  <% end %>
+  </ul>
+
+
+  <h1>Tipo de Receitas</h1>
+  
+  <% @recipe_types.each do |recipe_type| %>
+    <li><%= link_to recipe_type.name, recipe_type %></li>
+  <% end %>
+  
+
+
+<% end %>

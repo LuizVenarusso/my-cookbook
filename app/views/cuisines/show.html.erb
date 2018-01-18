@@ -1,0 +1,16 @@
+<h1>Cozinha: <%= @cuisine.name %></h1>
+
+<% if @cuisine.recipes.empty? %>
+  <p>Nenhuma receita encontrada para este tipo de cozinha</p>
+<% end %>
+
+
+<% @cuisine.recipes.each do |recipe| %>
+  <h1><%= link_to(recipe.title, recipe) %></h1>
+  <ul>
+    <li><%= recipe.recipe_type.name %></li>
+    <li><%= recipe.cuisine.name %></li>
+    <li><%= recipe.difficulty %></li>
+    <li><%= recipe.cook_time %> minutos</li>
+  </ul>
+<% end %>

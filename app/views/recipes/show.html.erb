@@ -1,0 +1,25 @@
+<h1><%= @recipe.title %></h1>
+<%= "Enviado por: #{@recipe.user.email}" %>
+<%= flash[:success] %>
+<h3>Detalhes</h3>
+<p>
+  Tipo: <%= @recipe.recipe_type.name %><br>
+  Cozinha: <%= @recipe.cuisine.name %><br>
+  Dificuldade: <%= @recipe.difficulty %><br>
+  Tempo de preparo: <%= @recipe.cook_time %> minutos<br>
+</p>
+<h3>Ingredientes</h3>
+<p><%= @recipe.ingredients %></p>
+<h3>Como Preparar</h3>
+<p><%= @recipe.method %></p>
+
+<%= link_to 'Editar', edit_recipe_path if user_signed_in? and current_user.owner_recipe?(@recipe) %>
+<%= link_to 'Remover', recipe_path, method: :delete if user_signed_in? and current_user.owner_recipe?(@recipe)%>
+<% if user_signed_in? %>
+  <% if current_user.is_favorite? @recipe %>
+    <%=  link_to 'Desfavoritar', unfavorite_recipe_path(@recipe), method: :delete %>
+  <% else %>
+    <%= link_to 'Salvar como Favorita', favorite_recipe_path(@recipe), method: :post %>
+  <% end %>
+<% end %>
+<%= link_to 'Voltar', root_path %>

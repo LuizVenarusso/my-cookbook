@@ -1,0 +1,26 @@
+pt-BR:
+  site_description : Bem-vindo ao maior livro de receitas online
+
+  activerecord:
+    models:
+      cuisine: Cozinha
+      recipe: Receita
+      user: Usuário
+      recipe_type: Tipo de Receita
+    attributes:
+      cuisine:
+        name: "Nome"
+      recipe:
+        title: "Título"
+        recipe_type_id: "Tipo da Receita"
+        cuisine_id: "Cozinha"
+        cuisine: "Cozinha"
+        difficulty: "Dificuldade"
+        cook_time: "Tempo de Preparo"
+        ingredients: "Ingredientes"
+        method: "Como Preparar"
+      user:
+        email: "Email"
+        password: "Senha"
+      recipe_type:
+        name: "Nome"  

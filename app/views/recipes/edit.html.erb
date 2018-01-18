@@ -1,0 +1,35 @@
+<h1>Editar Receita</h1>
+<%= flash[:error] %>
+<%= form_for(@recipe) do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :recipe_type_id %>
+    <%= f.collection_select :recipe_type_id, @recipe_types, :id, :name %>
+  </div>
+  <div>
+    <%= f.label :cuisine_id %>
+    <% #if !@cuisines.nil? %>
+      <%= f.collection_select :cuisine_id, @cuisines, :id, :name  %>
+    <% #end %>
+  </div>
+  <div>
+    <%= f.label :difficulty %>
+    <%= f.text_field :difficulty %>
+  </div>
+  <div>
+    <%= f.label :cook_time %>
+    <%= f.text_field :cook_time %>
+  </div>
+  <div>
+    <%= f.label :ingredients%>
+    <%= f.text_area :ingredients %>
+  </div>
+  <div>
+    <%= f.label :method %>
+    <%= f.text_area :method %>
+  </div>
+  <%= f.submit 'Enviar' %>
+<% end %>

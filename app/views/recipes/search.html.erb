@@ -1,0 +1,13 @@
+Resultados da busca por: <%= @search %>
+<%= flash[:error] %>
+<% @results.each do |recipe| %>
+  <h1><%= link_to(recipe.title, recipe) %></h1>
+  <ul>
+    <li><%= recipe.recipe_type.name %></li>
+    <li><%= recipe.cuisine.name %></li>
+    <li><%= recipe.difficulty %></li>
+    <li><%= recipe.cook_time %> minutos</li>
+    <li><%= recipe.ingredients %></li>
+    <li><%= recipe.method %></li>
+  </ul>
+<% end %>
