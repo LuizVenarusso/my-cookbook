@@ -13,6 +13,16 @@
 <h3>Como Preparar</h3>
 <p><%= @recipe.method %></p>
 
+<h3>Enviar para um amigo</h3>
+<%= form_tag(share_recipe_path, method: :post) do  %>
+  <%= label_tag :email, 'Email' %>
+  <%= text_field_tag :email %>
+  <%= label_tag :message, 'Mensagem' %>
+  <%= text_area_tag :message %>
+  <%= submit_tag 'Enviar' %>
+<% end %>
+<hr>
+
 <%= link_to 'Editar', edit_recipe_path if user_signed_in? and current_user.owner_recipe?(@recipe) %>
 <%= link_to 'Remover', recipe_path, method: :delete if user_signed_in? and current_user.owner_recipe?(@recipe)%>
 <% if user_signed_in? %>

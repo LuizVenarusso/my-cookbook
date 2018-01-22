@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     member do
       post 'favorite'
       delete 'unfavorite'
+      post 'share'
     end
 
     collection do
