@@ -6,5 +6,4 @@ class RecipesMailer < ApplicationMailer
 		@recipe = Recipe.find(recipe_id)
 		mail(to: email, subject: 'Compartilharam uma receita com você')
 	end
-
 end

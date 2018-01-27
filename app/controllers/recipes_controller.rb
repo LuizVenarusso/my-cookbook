@@ -1,19 +1,26 @@
 class RecipesController < ApplicationController
+  before_action :set_recipe, only: [:show, :edit, :update, :favorite, :unfavorite,
+                                    :destroy]
+  before_action :set_cuisines, only: [:new]
+
+
+  def set_recipe
+    @recipe = Recipe.find(params[:id])
+  end
+
+  def set_cuisines
+    @cuisines = Cuisine.all
+  end
 
   def show
-    @recipe = Recipe.find(params[:id])
   end
 
   def new
     @recipe = Recipe.new
     @recipe_types = RecipeType.all
-    @cuisines = Cuisine.all
   end
 
   def create
-    recipe_params = params.require(:recipe).permit(:title,
-                                                :recipe_type_id, :cuisine_id, :difficulty,
-                                                :cook_time, :ingredients, :method)
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
     if @recipe.save
@@ -27,8 +34,7 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    @recipe = Recipe.find(params[:id])
-    if current_user.owner_recipe?(@recipe)
+    if current_user == @recipe.user
       @cuisines = Cuisine.all
       @recipe_types = RecipeType.all
     else
@@ -38,15 +44,11 @@ class RecipesController < ApplicationController
   end
 
   def update
-    recipe_params = params.require(:recipe).permit(:title,
-                                                :recipe_type_id, :cuisine_id, :difficulty,
-                                                :cook_time, :ingredients, :method)
-    @recipe = Recipe.find(params[:id])
-    @cuisines = Cuisine.all
-    @recipe_types = RecipeType.all
     if @recipe.update(recipe_params)
-    redirect_to @recipe
+      redirect_to @recipe
     else
+      @cuisines = Cuisine.all
+      @recipe_types = RecipeType.all
       flash.now[:error] = 'Você deve informar todos os dados da receita'
       render :edit
     end
@@ -60,14 +62,12 @@ class RecipesController < ApplicationController
   end
 
   def favorite
-    @recipe = Recipe.find(params[:id])
     Favorite.create(user: current_user , recipe: @recipe)
     flash[:success] = "Receita favoritada com sucesso"
     redirect_to @recipe
   end
 
   def unfavorite
-    @recipe = Recipe.find(params[:id])
     fav = Favorite.find_by(user: current_user, recipe: @recipe)
     fav.destroy
     flash[:success] = 'Receita desfavoritada com sucesso'
@@ -75,21 +75,27 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    recipe = Recipe.find(params[:id])
-    recipe.destroy
+    @recipe.destroy
     flash[:success] = 'Receita removida com sucesso'
     redirect_to root_path
   end
 
   def share
+    @recipe = Recipe.find(params[:id])
     email = params[:email]
     msg = params[:message]
 
     RecipesMailer.share(email, msg,
-                        @recipe.id).deliver_now
+      @recipe.id).deliver_now
 
     flash[:notice] = "Receita enviada para #{email}"
     redirect_to @recipe
   end
 
+  private
+  def recipe_params
+    params.require(:recipe).permit(:title,:recipe_type_id,
+      :cuisine_id, :difficulty,
+      :cook_time, :ingredients, :method)
+  end
 end

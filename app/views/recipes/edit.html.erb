@@ -1,5 +1,7 @@
 <h1>Editar Receita</h1>
+
 <%= flash[:error] %>
+
 <%= form_for(@recipe) do |f| %>
   <div>
     <%= f.label :title %>
@@ -11,9 +13,7 @@
   </div>
   <div>
     <%= f.label :cuisine_id %>
-    <% #if !@cuisines.nil? %>
       <%= f.collection_select :cuisine_id, @cuisines, :id, :name  %>
-    <% #end %>
   </div>
   <div>
     <%= f.label :difficulty %>
@@ -32,4 +32,5 @@
     <%= f.text_area :method %>
   </div>
   <%= f.submit 'Enviar' %>
+  <br> <%= link_to 'Voltar', root_path %> </br>
 <% end %>
