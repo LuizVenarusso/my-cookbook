@@ -29,6 +29,4 @@ feature 'User send recipe photograph' do
     expect(page).to have_content("Salvar como Favorita")
 
   end
-
-
 end
