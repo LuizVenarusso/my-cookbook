@@ -12,7 +12,8 @@
     <li><%= recipe.cuisine.name %></li>
     <li><%= recipe.difficulty %></li>
     <li><%= recipe.cook_time %> minutos</li>
+    <td><%= image_tag(recipe.image.url(:thumb)) %></td>
   </ul>
-
-  <br> <%= link_to 'Voltar', root_path %> </br>
 <% end %>
+
+<br> <%= link_to 'Voltar', root_path %> </br>

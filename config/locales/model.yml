@@ -19,6 +19,7 @@ pt-BR:
         cook_time: "Tempo de Preparo"
         ingredients: "Ingredientes"
         method: "Como Preparar"
+        image: "Imagem"
       user:
         email: "Email"
         password: "Senha"

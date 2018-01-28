@@ -13,6 +13,9 @@
 <h3>Como Preparar</h3>
 <p><%= @recipe.method %></p>
 
+<h3>Imagem</h3>
+<td><%= image_tag(@recipe.image.url(:medium)) %></td>
+
 <h3>Enviar para um amigo</h3>
 <%= form_tag(share_recipe_path, method: :post) do  %>
   <%= label_tag :email, 'Email' %>
