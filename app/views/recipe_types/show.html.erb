@@ -13,5 +13,7 @@
     <li><%= recipe.difficulty %></li>
     <li><%= recipe.cook_time %> minutos</li>
   </ul>
-  <br> <%= link_to 'Voltar', root_path %> </br>
 <% end %>
+
+<%= link_to 'Editar', edit_recipe_type_path if user_signed_in? and current_user.admin? %>
+<br> <%= link_to 'Voltar', root_path %> </br>

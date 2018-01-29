@@ -36,7 +36,7 @@ scenario 'and must fill in name' do
     fill_in 'Nome', with: ''
     click_on 'Enviar'
 
-    expect(page).to have_content('Você deve informar o nome do tipo de receita')
+    expect(page).to have_content('Você deve informar todos os dados da receita')
 end
 
 scenario 'and do not repeat' do

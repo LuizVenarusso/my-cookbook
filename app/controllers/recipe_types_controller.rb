@@ -1,9 +1,10 @@
 class RecipeTypesController < ApplicationController
   before_action :authenticate_user!
-  before_action :admin_only, :except => :show
+  before_action :admin_only, except: :show
+  before_action :set_recipe_type, only: [:show, :edit, :update]
+
 
   def show
-    @recipe_type = RecipeType.find(params[:id])
   end
 
   def new
@@ -15,8 +16,24 @@ class RecipeTypesController < ApplicationController
     if @recipe_type.save
       redirect_to @recipe_type
     else
-      flash.now[:error] = 'Você deve informar o nome do tipo de receita'
+      flash.now[:error] = 'Você deve informar todos os dados da receita'
       render :new
+    end
+  end
+
+  def edit
+    if current_user.admin?
+     @recipe_types = RecipeType.all
+   end
+ end
+
+ def update
+    if @recipe_type.update(recipe_type_params)
+      redirect_to @recipe_type
+    else
+      @recipe_types = RecipeType.all
+      flash.now[:error] = 'Você deve informar todos os dados da receita'
+      render :edit
     end
   end
 
@@ -30,6 +47,10 @@ class RecipeTypesController < ApplicationController
     unless current_user.admin?
       redirect_to root_path, :alert => "Você não possui permissão para criar uma cozinha"
     end
+  end
+
+  def set_recipe_type
+    @recipe_type = RecipeType.find(params[:id])
   end
 
 end
