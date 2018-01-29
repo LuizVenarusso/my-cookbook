@@ -1,8 +1,12 @@
 require 'rails_helper'
 
-feature 'User register recipe_jype' do
+feature 'Admin register recipe_type' do
   scenario 'successfully' do
 
+    user = User.create(email: "luiz@email.com",password:"123456")
+    user.update_attribute(:admin, true)
+
+    login_as(user)
     visit new_recipe_type_path
     fill_in 'Nome', with: 'Sobremesa'
     click_on 'Enviar'
@@ -12,6 +16,10 @@ feature 'User register recipe_jype' do
   end
 
   scenario 'and must fill in name' do
+    user = User.create(email: "luiz@email.com",password:"123456")
+    user.update_attribute(:admin, true)
+
+    login_as(user)
     visit new_recipe_type_path
     fill_in 'Nome', with: ''
     click_on 'Enviar'
@@ -21,6 +29,10 @@ feature 'User register recipe_jype' do
   
   scenario 'and do not repeat' do
     RecipeType.create(name: 'Arabe')
+    user = User.create(email: "luiz@email.com",password:"123456")
+    user.update_attribute(:admin, true)
+
+    login_as(user)
 
     visit new_recipe_type_path
     fill_in 'Nome', with: 'Arabe'

@@ -1,4 +1,7 @@
 class RecipeTypesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :admin_only, :except => :show
+
   def show
     @recipe_type = RecipeType.find(params[:id])
   end
@@ -18,8 +21,15 @@ class RecipeTypesController < ApplicationController
   end
 
   private
+
   def recipe_type_params
     params.require(:recipe_type).permit(:name)
+  end
+
+  def admin_only
+    unless current_user.admin?
+      redirect_to root_path, :alert => "Você não possui permissão para criar uma cozinha"
+    end
   end
 
 end
