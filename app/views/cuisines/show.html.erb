@@ -16,4 +16,5 @@
   </ul>
 <% end %>
 
+<%= link_to 'Editar', edit_cuisine_path if user_signed_in? and current_user.admin? %>
 <br> <%= link_to 'Voltar', root_path %> </br>
