@@ -1,6 +1,6 @@
 #require 'rails_helper'
 
-#feature 'Visitor send recipe to a friend' do
+#feature 'User send recipe to a friend' do
  # scenario 'succesffuly' do
   #  user = create(:user)
    # recipe = create(:recipe, title: 'Feijoada de Frango', user: user)

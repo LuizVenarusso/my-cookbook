@@ -1,39 +1,44 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>MyCookbook</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>MyCookbook</title>
+  <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-    <main>
-        
-      <div>
-        <%= form_tag("recipes/search", method: "get") do %>
-        <%= label_tag(:search, "Buscar") %>
-        <%= text_field_tag(:search) %>
-        <%= submit_tag("Buscar") %>
-        <% end %>
-      </div>
+<body>
+  <main>
 
-      <div>
-        <%= link_to 'Início', root_path %>
-        <% if user_signed_in? %>
-          <%= link_to 'Enviar uma receita', new_recipe_path %>
-          <%= link_to 'Sair', destroy_user_session_path, method: "delete" %>
-        <% else %>
-          <%= link_to 'Entrar', new_user_session_path %>
-        <% end %>
+    <div>
+      <%= form_tag("recipes/search", method: "get") do %>
+      <%= label_tag(:search, "Buscar") %>
+      <%= text_field_tag(:search) %>
+      <%= submit_tag("Buscar") %>
+      <% end %>
+    </div>
 
-      </div>
+    <div>
+      <%= link_to 'Início', root_path %>
+      <% if user_signed_in? and current_user.admin? %>
+        <%= link_to 'Enviar uma receita', new_recipe_path %>
+        <%= link_to 'Criar nova cozinha', new_cuisine_path %>
+        <%= link_to 'Criar novo tipo de receita', new_recipe_type_path %>
+        <%= link_to 'Sair', destroy_user_session_path, method: "delete" %>
+      <% elsif user_signed_in? %>
+        <%= link_to 'Enviar uma receita', new_recipe_path %>
+        <%= link_to 'Sair', destroy_user_session_path, method: "delete" %>
+      <% else %>
+        <%= link_to 'Entrar', new_user_session_path %>
+      <% end %>
 
-      <%= yield %>
-    </main>
-    <aside>
-      <%= yield :aside %>
-    </aside>
-  </body>
+    </div>
+
+    <%= yield %>
+  </main>
+  <aside>
+    <%= yield :aside %>
+  </aside>
+</body>
 </html>

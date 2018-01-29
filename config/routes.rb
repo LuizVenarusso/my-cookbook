@@ -13,6 +13,6 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
-  resources :cuisines, only: [:show, :new, :create]
+  resources :cuisines, only: [:show, :new, :create, :edit]
   resources :recipe_types, only: [:show, :new, :create]
 end

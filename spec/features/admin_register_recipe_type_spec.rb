@@ -13,9 +13,21 @@ feature 'Admin register recipe_type' do
 
     expect(page).to have_css('h1', text: 'Sobremesa')
     expect(page).to have_content('Nenhuma receita encontrada para este tipo de receitas')
-  end
+end
 
-  scenario 'and must fill in name' do
+scenario 'and see buton in nav bar' do
+
+ user = User.create(email: "luiz@email.com",password:"123456")
+ user.update_attribute(:admin, true)
+
+ login_as(user) 
+ visit root_path
+
+ expect(page).to have_content('Criar novo tipo de receita')
+
+end
+
+scenario 'and must fill in name' do
     user = User.create(email: "luiz@email.com",password:"123456")
     user.update_attribute(:admin, true)
 
@@ -25,9 +37,9 @@ feature 'Admin register recipe_type' do
     click_on 'Enviar'
 
     expect(page).to have_content('Você deve informar o nome do tipo de receita')
-  end
-  
-  scenario 'and do not repeat' do
+end
+
+scenario 'and do not repeat' do
     RecipeType.create(name: 'Arabe')
     user = User.create(email: "luiz@email.com",password:"123456")
     user.update_attribute(:admin, true)
@@ -40,5 +52,5 @@ feature 'Admin register recipe_type' do
 
     expect(RecipeType.count).to eq 1
     expect(page).to have_content('Nome já está em uso')
-  end
+end
 end

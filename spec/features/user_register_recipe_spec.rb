@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Visitor register recipe with author' do
+feature 'User register recipe with author' do
   scenario 'successfully' do
     #cria os dados necessários, nesse caso não vamos criar dados no banco
     user = User.create(email:'luiz@email.com', password: '123456')

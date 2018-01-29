@@ -1,0 +1,12 @@
+<h1>Editar Cozinha</h1>
+
+<%= flash[:error] %>
+
+<%= form_for @cuisine do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.submit 'Enviar' %>
+
+  <br> <%= link_to 'Voltar', root_path %> </br>
+<% end %>

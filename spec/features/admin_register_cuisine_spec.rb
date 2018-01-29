@@ -15,7 +15,19 @@ feature 'Admin register cuisine' do
     expect(page).to have_content('Nenhuma receita encontrada para este tipo de cozinha')
   end
 
-  scenario 'and must fill in name' do
+  scenario 'and see buton in nav bar' do
+
+   user = User.create(email: "luiz@email.com",password:"123456")
+   user.update_attribute(:admin, true)
+
+   login_as(user) 
+   visit root_path
+
+   expect(page).to have_content('Criar nova cozinha')
+
+ end
+
+ scenario 'and must fill in name' do
 
    user = User.create(email: "luiz@email.com",password:"123456")
    user.update_attribute(:admin, true)

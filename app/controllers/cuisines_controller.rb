@@ -1,6 +1,6 @@
 class CuisinesController < ApplicationController
   before_action :authenticate_user!
-  before_action :admin_only, :except => :show
+  before_action :admin_only, except: :show
 
   def show
     @cuisine = Cuisine.find(params[:id])
