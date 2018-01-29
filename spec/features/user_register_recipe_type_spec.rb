@@ -18,4 +18,15 @@ feature 'User register recipe_jype' do
 
     expect(page).to have_content('Você deve informar o nome do tipo de receita')
   end
+  
+  scenario 'and do not repeat' do
+    RecipeType.create(name: 'Arabe')
+
+    visit new_recipe_type_path
+    fill_in 'Nome', with: 'Arabe'
+    click_on 'Enviar'
+
+    expect(RecipeType.count).to eq 1
+    expect(page).to have_content('Nome já está em uso')
+  end
 end

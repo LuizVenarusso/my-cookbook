@@ -1,6 +1,11 @@
-<% if @recipe_type.errors.any? %>
-<h2>Você deve informar o nome do tipo de receita</h2>
+<% if flash[:error]%>
+<%= flash[:error] %>
 <% end %>
+<ul>
+  <% @recipe_type.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+</ul>
 
 <%= form_for(@recipe_type) do |f| %>
 
