@@ -1,9 +1,6 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   has_many :favorites
   has_many :recipes
-
   has_many :favorite_recipes, through: :favorites, source: :recipe
 
   devise :database_authenticatable, :registerable,

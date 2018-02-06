@@ -30,7 +30,7 @@ class RecipesController < ApplicationController
         @cuisines = Cuisine.all
         @recipe_types = RecipeType.all
       else
-        flash[:notice] = 'Você não possui permissão para editar esta receita'
+        flash[:notice] = 'Sem permissão para editar esta receita'
         redirect_to root_path
       end
     end
@@ -99,5 +99,5 @@ class RecipesController < ApplicationController
     def set_cuisines
       @cuisines = Cuisine.all
     end
-    
+
   end

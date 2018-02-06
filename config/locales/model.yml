@@ -1,5 +1,5 @@
 pt-BR:
-  site_description : Bem-vindo ao maior livro de receitas online
+  site_description : Bem-vindo ao livro de receitas online
 
   activerecord:
     models:
@@ -27,4 +27,4 @@ pt-BR:
         remember_me: "Continuar conectado"
         sign_up: "Inscreva-se"
       recipe_type:
-        name: "Nome"  
+        name: "Nome"

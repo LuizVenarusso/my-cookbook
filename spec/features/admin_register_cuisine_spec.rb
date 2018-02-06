@@ -2,8 +2,7 @@ require 'rails_helper'
 
 feature 'Admin register cuisine' do
   scenario 'successfully' do
-
-    user = User.create(email: "luiz@email.com",password:"123456")
+    user = create(:user, email: 'luiz@email.com', password: '123456')
     user.update_attribute(:admin, true)
 
     login_as(user)
@@ -17,41 +16,40 @@ feature 'Admin register cuisine' do
 
   scenario 'and see buton in nav bar' do
 
-   user = User.create(email: "luiz@email.com",password:"123456")
-   user.update_attribute(:admin, true)
+    user = create(:user)
+    user.update_attribute(:admin, true)
 
-   login_as(user) 
-   visit root_path
+    login_as(user)
+    visit root_path
 
-   expect(page).to have_content('Criar nova cozinha')
+    expect(page).to have_content('Criar nova cozinha')
+  end
 
- end
+  scenario 'and must fill in name' do
 
- scenario 'and must fill in name' do
+    user = create(:user)
+    user.update_attribute(:admin, true)
 
-   user = User.create(email: "luiz@email.com",password:"123456")
-   user.update_attribute(:admin, true)
+    login_as(user)
 
-   login_as(user)
+    visit new_cuisine_path
+    fill_in 'Nome', with: ''
+    click_on 'Enviar'
 
-   visit new_cuisine_path
-   fill_in 'Nome', with: ''
-   click_on 'Enviar'
+    expect(page).to have_content('Você deve informar o nome da cozinha')
+  end
 
-   expect(page).to have_content('Você deve informar o nome da cozinha')
- end
+  scenario 'and do not repeat' do
+    user = create(:user)
+    user.update_attribute(:admin, true)
+    create(:cuisine, name: 'Arabe')
 
- scenario 'and do not repeat' do
-   Cuisine.create(name: 'Arabe')
-   user = User.create(email: "luiz@email.com",password:"123456")
-   user.update_attribute(:admin, true)
+    login_as(user)
+    visit new_cuisine_path
+    fill_in 'Nome', with: 'Arabe'
+    click_on 'Enviar'
 
-   login_as(user)
-   visit new_cuisine_path
-   fill_in 'Nome', with: 'Arabe'
-   click_on 'Enviar'
-
-   expect(Cuisine.count).to eq 1
-   expect(page).to have_content('Nome já está em uso')
- end
+    expect(Cuisine.count).to eq 1
+    expect(page).to have_content('Nome já está em uso')
+  end
 end

@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Admin register recipe_type' do
   scenario 'successfully' do
 
-    user = User.create(email: "luiz@email.com",password:"123456")
+    user = create(:user, email: "luiz@email.com",password:"123456")
     user.update_attribute(:admin, true)
 
     login_as(user)
@@ -17,18 +17,17 @@ end
 
 scenario 'and see buton in nav bar' do
 
- user = User.create(email: "luiz@email.com",password:"123456")
+ user = create(:user)
  user.update_attribute(:admin, true)
 
- login_as(user) 
+ login_as(user)
  visit root_path
 
  expect(page).to have_content('Criar novo tipo de receita')
-
 end
 
 scenario 'and must fill in name' do
-    user = User.create(email: "luiz@email.com",password:"123456")
+    user = create(:user)
     user.update_attribute(:admin, true)
 
     login_as(user)
@@ -40,9 +39,9 @@ scenario 'and must fill in name' do
 end
 
 scenario 'and do not repeat' do
-    RecipeType.create(name: 'Arabe')
-    user = User.create(email: "luiz@email.com",password:"123456")
+    user = create(:user)
     user.update_attribute(:admin, true)
+    create(:recipe_type, name: 'Arabe')
 
     login_as(user)
 

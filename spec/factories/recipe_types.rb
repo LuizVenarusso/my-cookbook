@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :recipe_type do
-    name "MyString"
+    name 'Entrada'
   end
 end
