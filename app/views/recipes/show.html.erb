@@ -29,7 +29,7 @@
 <%= link_to 'Editar', edit_recipe_path if user_signed_in? and current_user.owner_recipe?(@recipe) %>
 <%= link_to 'Remover', recipe_path, method: :delete if user_signed_in? and current_user.owner_recipe?(@recipe)%>
 <% if user_signed_in? %>
-  <% if current_user.is_favorite? @recipe %>
+  <% if current_user.favorite? @recipe %>
     <%=  link_to 'Desfavoritar', unfavorite_recipe_path(@recipe), method: :delete %>
   <% else %>
     <%= link_to 'Salvar como Favorita', favorite_recipe_path(@recipe), method: :post %>

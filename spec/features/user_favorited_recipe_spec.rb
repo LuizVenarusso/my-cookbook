@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'User favorite recipe' do
   scenario 'successfully' do
-    user = create(:user, email: 'luiz@email.com', password: '123456' )
+    user = create(:user, email: 'luiz@email.com', password: '123456')
     italian_cuisine = create(:cuisine, name: 'Italiana')
     recipe_type = create(:recipe_type, name: 'Prato Principal')
     italian_recipe = create(:recipe, title: 'Macarrão Carbonara',
@@ -47,7 +47,7 @@ feature 'User favorite recipe' do
 
   scenario 'can favorite with other user' do
     first_user = create(:user)
-    second_user = create(:user, email:'luiz@gmail.com', password: '123456')
+    second_user = create(:user, email: 'luiz@gmail.com', password: '123456')
     recipe_type = create(:recipe_type, name: 'Sobremesa')
     cuisine = create(:cuisine, name: 'Italiana')
     recipe = create(:recipe, title: 'Macarrão', recipe_type: recipe_type,

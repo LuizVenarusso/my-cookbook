@@ -3,8 +3,8 @@ require 'rails_helper'
 
 feature 'Visitor view recipes by type' do
   scenario 'from home page' do
-    user = create(:user, email: "luiz@email.com",password:"123456")
-    user.update_attribute(:admin, true)
+    user = create(:user, email: 'luiz@email.com', password: '123456')
+    user.update_attributes(admin: true)
     cuisine = create(:cuisine, name: 'Brasileira')
     recipe_type = create(:recipe_type, name: 'Sobremesa')
     recipe = create(:recipe, title: 'Bolo de cenoura', recipe_type: recipe_type,
@@ -13,7 +13,7 @@ feature 'Visitor view recipes by type' do
                              ingredients: 'Farinha, açucar, cenoura',
                              method: 'Cozinhe a cenoura, corte em pedaços
                              pequenos, misture com o restante dos ingredientes',
-                             user:user)
+                             user: user)
 
     login_as(user)
     visit root_path
@@ -29,7 +29,7 @@ feature 'Visitor view recipes by type' do
 
   scenario 'and view only recipes from same type' do
     user = create(:user)
-    user.update_attribute(:admin, true)
+    user.update_attributes(admin: true)
     brazilian_cuisine = create(:cuisine)
     dessert_recipe_type = create(:recipe_type)
     dessert_recipe = create(:recipe, recipe_type: dessert_recipe_type,
@@ -38,22 +38,21 @@ feature 'Visitor view recipes by type' do
     italian_cuisine = create(:cuisine, name: 'Italiana')
     main_recipe_type = create(:recipe_type, name: 'Prato Principal')
     main_recipe = create(:recipe, recipe_type: main_recipe_type,
-                                  cuisine: italian_cuisine, user:user)
+                                  cuisine: italian_cuisine, user: user)
 
     login_as(user)
     visit root_path
     click_on main_recipe_type.name
 
-
     expect(page).to have_css('li', text: main_recipe.recipe_type.name)
     expect(page).to have_css('li', text: main_recipe.cuisine.name)
     expect(page).not_to have_css('li', text: dessert_recipe.recipe_type.name)
     expect(page).not_to have_css('li', text: dessert_recipe.cuisine.name)
-    end
+  end
 
   scenario 'and type has no recipe' do
     user = create(:user)
-    user.update_attribute(:admin, true)
+    user.update_attributes(admin: true)
     brazilian_cuisine = create(:cuisine)
     recipe_type = create(:recipe_type)
     recipe = create(:recipe, recipe_type: recipe_type,

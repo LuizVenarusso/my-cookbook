@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  context 'is_favorite?' do
+  context 'is favorite?' do
     it 'user favorite recipe' do
       user = create(:user)
       recipe = create(:recipe, user: user)
       create(:favorite, user: user, recipe: recipe)
 
-      expect(user.is_favorite?(recipe)).to be_truthy
+      expect(user.favorite?(recipe)).to be_truthy
     end
 
     it 'false' do
@@ -16,7 +16,7 @@ RSpec.describe User, type: :model do
       recipe = create(:recipe, user: first_user)
       create(:favorite, user: first_user, recipe: recipe)
 
-      expect(second_user.is_favorite?(recipe)).to eq false
+      expect(second_user.favorite?(recipe)).to eq false
     end
   end
   context 'owner_recipe?' do

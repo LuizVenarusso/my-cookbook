@@ -1,9 +1,7 @@
 require 'rails_helper'
 
-
 RSpec.describe RecipesMailer do
   describe 'share' do
-
     it 'should send the correct email' do
       user = create(:user)
       recipe = create(:recipe, user: user)

@@ -1,5 +1,5 @@
 class CuisinesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :show
   before_action :admin_only, except: :show
   before_action :set_cuisine, only: [:show, :edit, :update]
 
@@ -21,12 +21,10 @@ class CuisinesController < ApplicationController
   end
 
   def edit
-    if current_user.admin?
-     @cuisines = Cuisine.all
-   end
- end
+    @cuisines = Cuisine.all if current_user.admin?
+  end
 
- def update
+  def update
     if @cuisine.update(cuisine_params)
       redirect_to @cuisine
     else
@@ -36,20 +34,17 @@ class CuisinesController < ApplicationController
     end
   end
 
-private
+  private
 
-def cuisine_params
-  params.require(:cuisine).permit(:name)
-end
-
-def admin_only
-  unless current_user.admin?
-    redirect_to root_path, :alert => "Você não possui permissão para acessar essa cozinha"
+  def cuisine_params
+    params.require(:cuisine).permit(:name)
   end
-end
 
-def set_cuisine
-  @cuisine = Cuisine.find(params[:id])
-end
+  def admin_only
+    redirect_to root_path, alert: 'Sem permissão' unless current_user.admin?
+  end
 
+  def set_cuisine
+    @cuisine = Cuisine.find(params[:id])
+  end
 end

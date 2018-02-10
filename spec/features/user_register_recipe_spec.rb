@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'User register recipe with author' do
   scenario 'successfully' do
-    user = create(:user, email:'luiz@email.com', password: '123456')
+    user = create(:user, email: 'luiz@email.com', password: '123456')
     create(:cuisine, name: 'Arabe')
     create(:recipe_type, name: 'Entrada')
     create(:recipe_type, name: 'Prato Principal')
@@ -26,7 +26,7 @@ feature 'User register recipe with author' do
     expect(page).to have_css('p', text: 'Entrada')
     expect(page).to have_css('p', text: 'Arabe')
     expect(page).to have_css('p', text: 'Fácil')
-    expect(page).to have_css('p', text: "45 minutos")
+    expect(page).to have_css('p', text: '45 minutos')
     expect(page).to have_css('h3', text: 'Ingredientes')
     expect(page).to have_css('p', text: 'Trigo para quibe, cebola, tomate')
     expect(page).to have_css('h3', text: 'Como Preparar')

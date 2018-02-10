@@ -9,7 +9,7 @@ feature 'Visitor view recipe details' do
                              cuisine: cuisine, difficulty: 'Médio',
                              ingredients: 'Macarrão com molho de tomate',
                              method: 'Adicionar a massa na água fervente',
-                             cook_time: 60, user:user)
+                             cook_time: 60, user: user)
 
     visit root_path
     click_on recipe.title

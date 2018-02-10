@@ -2,9 +2,8 @@ require 'rails_helper'
 
 feature 'Admin register recipe_type' do
   scenario 'successfully' do
-
-    user = create(:user, email: "luiz@email.com",password:"123456")
-    user.update_attribute(:admin, true)
+    user = create(:user, email: 'luiz@email.com', password: '123456')
+    user.update_attributes(admin: true)
 
     login_as(user)
     visit new_recipe_type_path
@@ -12,23 +11,24 @@ feature 'Admin register recipe_type' do
     click_on 'Enviar'
 
     expect(page).to have_css('h1', text: 'Sobremesa')
-    expect(page).to have_content('Nenhuma receita encontrada para este tipo de receitas')
-end
+    expect(page).to have_content(
+      'Nenhuma receita encontrada para este tipo de receitas'
+    )
+  end
 
-scenario 'and see buton in nav bar' do
-
- user = create(:user)
- user.update_attribute(:admin, true)
-
- login_as(user)
- visit root_path
-
- expect(page).to have_content('Criar novo tipo de receita')
-end
-
-scenario 'and must fill in name' do
+  scenario 'and see buton in nav bar' do
     user = create(:user)
-    user.update_attribute(:admin, true)
+    user.update_attributes(admin: true)
+
+    login_as(user)
+    visit root_path
+
+    expect(page).to have_content('Criar novo tipo de receita')
+  end
+
+  scenario 'and must fill in name' do
+    user = create(:user)
+    user.update_attributes(admin: true)
 
     login_as(user)
     visit new_recipe_type_path
@@ -36,11 +36,11 @@ scenario 'and must fill in name' do
     click_on 'Enviar'
 
     expect(page).to have_content('Você deve informar todos os dados da receita')
-end
+  end
 
-scenario 'and do not repeat' do
+  scenario 'and do not repeat' do
     user = create(:user)
-    user.update_attribute(:admin, true)
+    user.update_attributes(admin: true)
     create(:recipe_type, name: 'Arabe')
 
     login_as(user)
@@ -51,5 +51,5 @@ scenario 'and do not repeat' do
 
     expect(RecipeType.count).to eq 1
     expect(page).to have_content('Nome já está em uso')
-end
+  end
 end

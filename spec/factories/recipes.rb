@@ -6,7 +6,8 @@ FactoryBot.define do
     difficulty 'Médio'
     cook_time 60
     ingredients 'Farinha, açucar, cenoura'
-    add_attribute(:method) { 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes' }
+    add_attribute(:method) { 'Cozinhe a cenoura, corte em pedaços pequenos' }
     user
+    image { File.new(Rails.root.join('spec', 'support', 'fixtures', 'im.png')) }
   end
 end

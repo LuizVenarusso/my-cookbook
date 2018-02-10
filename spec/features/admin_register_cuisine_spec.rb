@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Admin register cuisine' do
   scenario 'successfully' do
     user = create(:user, email: 'luiz@email.com', password: '123456')
-    user.update_attribute(:admin, true)
+    user.update_attributes(admin: true)
 
     login_as(user)
     visit new_cuisine_path
@@ -11,13 +11,14 @@ feature 'Admin register cuisine' do
     click_on 'Enviar'
 
     expect(page).to have_css('h1', text: 'Brasileira')
-    expect(page).to have_content('Nenhuma receita encontrada para este tipo de cozinha')
+    expect(page).to have_content(
+      'Nenhuma receita encontrada para este tipo de cozinha'
+    )
   end
 
   scenario 'and see buton in nav bar' do
-
     user = create(:user)
-    user.update_attribute(:admin, true)
+    user.update_attributes(admin: true)
 
     login_as(user)
     visit root_path
@@ -26,9 +27,8 @@ feature 'Admin register cuisine' do
   end
 
   scenario 'and must fill in name' do
-
     user = create(:user)
-    user.update_attribute(:admin, true)
+    user.update_attributes(admin: true)
 
     login_as(user)
 
@@ -41,7 +41,7 @@ feature 'Admin register cuisine' do
 
   scenario 'and do not repeat' do
     user = create(:user)
-    user.update_attribute(:admin, true)
+    user.update_attributes(admin: true)
     create(:cuisine, name: 'Arabe')
 
     login_as(user)
