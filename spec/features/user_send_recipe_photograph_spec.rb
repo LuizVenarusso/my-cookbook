@@ -19,11 +19,11 @@ feature 'User send recipe photograph' do
     fill_in 'Como Preparar', with: 'Cozinhe a cenoura, corte em pedaços
 																		pequenos,misture com o restante dos
 																		ingredientes'
-    attach_file('Imagem', 'spec/support/fixtures/im.png')
+    attach_file('Imagem', 'spec/support/fixtures/img.jpeg')
 
     click_on 'Enviar'
 
-    expect(page).to have_css("img[src*='im.png']")
+    expect(page).to have_css("img[src*='img.jpeg']")
     expect(page).to have_content('Voltar')
     expect(page).to have_content('Editar')
     expect(page).to have_content('Remover')
