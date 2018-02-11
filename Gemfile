@@ -33,7 +33,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'devise'
-gem "paperclip", "~> 5.0.0"
+gem "paperclip", "~> 5.2.0"
 #gem 'rmagick', '~> 2.16'
 
 group :development, :test do
