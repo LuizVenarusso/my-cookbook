@@ -43,6 +43,7 @@ group :development, :test do
   gem 'capybara'
   gem 'factory_bot_rails'
   gem 'rubocop', '~> 0.52.1', require: false
+  gem 'simplecov', require: false
 end
 
 group :development do
