@@ -36,7 +36,7 @@ feature 'User favorite recipe' do
 
     login_as(user)
     visit root_path
-    click_on italian_recipe.title
+    first('.favoritas').click_on italian_recipe.title
     click_on 'Desfavoritar'
 
     expect(page).to have_css('h1', text: italian_recipe.title)
@@ -59,7 +59,7 @@ feature 'User favorite recipe' do
 
     login_as(second_user)
     visit root_path
-    click_on recipe.title
+    first('.favoritas').click_on recipe.title
     click_on 'Salvar como Favorita'
 
     expect(page).to have_css('h1', text: recipe.title)
