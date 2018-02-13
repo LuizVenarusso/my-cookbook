@@ -35,6 +35,10 @@
   <%= f.label :image %><br/>
   <%= f.file_field :image %>
 </div>
+<div>
+  <%= f.label :highlight %>
+  <%= f.check_box :highlight %>
+</div>
 <%= f.submit 'Enviar' %>
 <br> <%= link_to 'Voltar', root_path %> </br>
 <% end %>
