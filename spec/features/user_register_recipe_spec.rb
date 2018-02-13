@@ -54,4 +54,31 @@ feature 'User register recipe with author' do
     visit root_path
     expect(page).not_to have_content('Enviar uma receita')
   end
+
+  scenario 'and can highlight a recipe' do
+    user = create(:user)
+    cuisine = create(:cuisine)
+    recipe_type = create(:recipe_type)
+    img = '0582542e7338ffe28bc07bcd06e2a047d529743295cb753916c435368db3838b.png'
+
+    login_as(user)
+    visit root_path
+
+    click_on 'Enviar uma receita'
+    fill_in 'Título', with: 'Tabule'
+    select recipe_type.name, from: 'Tipo da Receita'
+    select cuisine.name, from: 'Cozinha'
+    fill_in 'Dificuldade', with: 'Fácil'
+    fill_in 'Tempo de Preparo', with: '45'
+    fill_in 'Ingredientes', with: 'Trigo para quibe, cebola, tomate'
+    fill_in 'Como Preparar', with: 'Misturar tudo e servir.'
+    attach_file('Imagem', 'spec/support/fixtures/img.jpeg')
+    check 'Destaque'
+
+    click_on 'Enviar'
+    expect(page).to have_css("img[src*='img.jpeg']")
+
+    visit root_path
+    expect(page).to have_css("img[src*='/assets/star-#{img}']")
+  end
 end

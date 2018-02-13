@@ -9,22 +9,23 @@ pt-BR:
       recipe_type: Tipo de Receita
     attributes:
       cuisine:
-        name: "Nome"
+        name: Nome
       recipe:
-        title: "Título"
-        recipe_type_id: "Tipo da Receita"
-        cuisine_id: "Cozinha"
-        cuisine: "Cozinha"
-        difficulty: "Dificuldade"
-        cook_time: "Tempo de Preparo"
-        ingredients: "Ingredientes"
-        method: "Como Preparar"
-        image: "Imagem"
+        title: Título
+        recipe_type_id: Tipo da Receita
+        cuisine_id: Cozinha
+        cuisine: Cozinha
+        difficulty: Dificuldade
+        cook_time: Tempo de Preparo
+        ingredients: Ingredientes
+        method: Como Preparar
+        image: Imagem
+        highlight: Destaque
       user:
-        email: "Email"
-        password: "Senha"
-        password_confirmation: "Confirmar senha"
-        remember_me: "Continuar conectado"
-        sign_up: "Inscreva-se"
+        email: Email
+        password: Senha
+        password_confirmation: Confirmar senha
+        remember_me: Continuar conectado
+        sign_up: Inscreva-se
       recipe_type:
-        name: "Nome"
+        name: Nome
