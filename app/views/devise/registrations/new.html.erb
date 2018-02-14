@@ -4,14 +4,34 @@
   <%= devise_error_messages! %>
 
   <div class="field">
+    <%= f.label :username %><br />
+    <%= f.text_field :username, class: "form-control" %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
+    <%= f.label :city %><br />
+    <%= f.text_field :city, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :facebook %><br />
+    <%= f.text_field :facebook, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :twitter %><br />
+    <%= f.text_field :twitter, class: "form-control" %>
+  </div>
+
+  <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(mínimo <%= @minimum_password_length %> dígitos)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "off" %>
   </div>

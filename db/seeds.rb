@@ -7,7 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 user = User.create(email: 'teste@email.com', password: '123456',
-                   username: 'Luiz', city: 'SP')
+                   username: 'Luiz', city: 'SP', facebook: 'www.facebook.com',
+                   twitter: 'www.twitter.com')
 cuisine = Cuisine.create(name: 'Brasileira')
 recipe_type = RecipeType.create(name: 'Prato Principal')
 recipe = Recipe.create(title: 'Feijoada', recipe_type: recipe_type,
@@ -15,3 +16,7 @@ recipe = Recipe.create(title: 'Feijoada', recipe_type: recipe_type,
                 cook_time: '50', ingredients: 'Feijão',
                 method: 'Cozinhar feijão', cuisine: cuisine,
                 user: user)
+admin = User.create(username: 'Administrador', email: 'admin@admin.com',
+                    password: '123456', city: 'SC',
+                    facebook: 'www.facebook.com', twitter: 'www.twitter.com' )
+admin.update_attributes(admin: true)

@@ -22,10 +22,12 @@ pt-BR:
         image: Imagem
         highlight: Destaque
       user:
+        username: Nome
         email: Email
         password: Senha
         password_confirmation: Confirmar senha
         remember_me: Continuar conectado
         sign_up: Inscreva-se
+        city: Cidade
       recipe_type:
         name: Nome
