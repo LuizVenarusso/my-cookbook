@@ -1,5 +1,6 @@
 <h1><%= @recipe.title %></h1>
-<%= "Enviado por: #{@recipe.user.email}" %>
+<%= 'Enviado por:' %>
+<%= link_to "#{@recipe.user.username}", user_path %>
 <%= flash[:success] %>
 <h3>Detalhes</h3>
 <p>

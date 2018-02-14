@@ -2,7 +2,7 @@
   <div class="col-lg-12">
     <h1 class="page-header">CookBook</h1>
     <p><%= I18n.translate('site_description') %></p>
-    <%= "Bem vindo: #{current_user.email}" if user_signed_in? %><br>
+    <%= "Bem vindo: #{current_user.username}" if user_signed_in? %><br>
     <%= flash[:notice] %>
     <%= flash[:alert] %>
     <%= flash[:success] %>
