@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  validates :username, :city, presence: true
   has_many :favorites, dependent: :destroy
   has_many :recipes, dependent: :destroy
   has_many :favorite_recipes, through: :favorites, source: :recipe

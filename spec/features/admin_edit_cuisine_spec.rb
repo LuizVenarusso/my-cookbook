@@ -47,7 +47,7 @@ feature 'Admin edit cuisine' do
   end
 
   scenario 'have not two cuisine with same name' do
-    user = User.create(email: 'luiz@email.com', password: '123456')
+    user = create(:user)
     user.update_attributes(admin: true)
     brazilian_cuisine = Cuisine.create(name: 'Brasileira')
     italian_cuisine = Cuisine.create(name: 'Italiana')
