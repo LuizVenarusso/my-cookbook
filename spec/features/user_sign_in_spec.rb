@@ -13,7 +13,7 @@ feature 'User sign in' do
       click_on 'Entrar'
     end
 
-    expect(page).to have_content("Bem vindo: #{user.email}")
+    expect(page).to have_content("Bem vindo: #{user.username}")
     expect(page).not_to have_content('Entrar')
     expect(page).to have_content('Sair')
   end
@@ -32,7 +32,7 @@ feature 'User sign in' do
 
     click_on 'Sair'
 
-    expect(page).not_to have_content("Bem vindo: #{user.email}")
+    expect(page).not_to have_content("Bem vindo: #{user.username}")
     expect(page).to have_content('Entrar')
     expect(page).not_to have_content('Sair')
   end
